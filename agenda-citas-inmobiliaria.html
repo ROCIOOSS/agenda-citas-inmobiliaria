@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda de Citas - Consultoría Inmobiliaria</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fdfdfe;
+      color: #333;
+    }
+    header {
+      background: #f8f0f5;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    header img {
+      max-height: 60px;
+    }
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: #a26ea1;
+      border-bottom: 2px solid #e0cfe5;
+      padding-bottom: 0.5rem;
+    }
+    .valores li {
+      margin: 0.5rem 0;
+    }
+    .accordion {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .accordion button {
+      width: 100%;
+      background: #faf3fb;
+      border: none;
+      padding: 1rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
+    }
+    .accordion-content {
+      display: none;
+      padding: 1rem;
+      background: #fff;
+      border-top: 1px solid #eee;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-top: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, select, textarea {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    button[type="submit"] {
+      background: #d8a3d2;
+      border: none;
+      padding: 1rem;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .success-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #d4edda;
+      color: #155724;
+      border-radius: 10px;
+      display: none;
+    }
+    @media (max-width: 600px) {
+      section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://github.com/usuario/logo.png" alt="Logo Consultoría">
+  </header>
+
+  <section>
+    <h2>¿Quiénes somos?</h2>
+    <p>Somos una empresa de consultoría dedicada a la atención de inversionistas mexicanos inmobiliarios de tipo residencial en Arizona y Texas.</p>
+
+    <h2>Misión</h2>
+    <p>Contribuir al crecimiento del patrimonio de inversionistas mexicanos mediante la gestión de estrategias de inversión en bienes raíces en Arizona y Texas.</p>
+
+    <h2>Visión</h2>
+    <p>Convertirnos en la empresa experta de consultoría inmobiliaria en Arizona y Texas con mayor volumen de operaciones desde México hacia 2035.</p>
+
+    <h2>Valores</h2>
+    <ul class="valores">
+      <li>Liderazgo</li>
+      <li>Responsabilidad</li>
+      <li>Compromiso</li>
+      <li>Honestidad</li>
+      <li>Eficiencia</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Servicios</h2>
+    <div class="accordion">
+      <button onclick="toggleAccordion(this)">🏘️ Propiedades tipo residencial, condo y departamento</button>
+      <div class="accordion-content">
+        <p>Conjuntos habitacionales para renta, vacaciones o segunda casa.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button onclick="toggleAccordion(this)">📍 Ubicaciones</button>
+      <div class="accordion-content">
+        <p><strong>Arizona:</strong> Phoenix, Scottsdale, Chandler, Mesa, Gilbert, Buckeye.<br>
+        <strong>Texas:</strong> Austin, McAllen, San Antonio, Houston.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Agenda tu cita</h2>
+    <div class="card">
+      <form id="citaForm">
+        <input type="text" name="nombre" placeholder="Nombre completo" required>
+        <input type="tel" name="telefono" placeholder="Teléfono" required>
+        <input type="email" name="correo" placeholder="Correo electrónico" required>
+        <select name="sexo" required>
+          <option value="">Sexo</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Otro">Otro</option>
+        </select>
+        <select name="ciudad" required>
+          <option value="">Ciudad de interés</option>
+          <option value="Phoenix">Phoenix</option>
+          <option value="Scottsdale">Scottsdale</option>
+          <option value="Chandler">Chandler</option>
+          <option value="Mesa">Mesa</option>
+          <option value="Gilbert">Gilbert</option>
+          <option value="Buckeye">Buckeye</option>
+          <option value="Austin">Austin</option>
+          <option value="McAllen">McAllen</option>
+          <option value="San Antonio">San Antonio</option>
+          <option value="Houston">Houston</option>
+        </select>
+        <input type="date" name="fecha" required>
+        <input type="time" name="hora" required>
+        <textarea name="comentarios" placeholder="Comentarios adicionales (opcional)"></textarea>
+        <button type="submit">Agendar cita</button>
+        <div class="success-message" id="mensajeExito">👍 Gracias, tu cita ha sido agendada. ⏳ Redirigiendo al inicio... 🎉 Te contactaremos pronto.</div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    function toggleAccordion(button) {
+      const content = button.nextElementSibling;
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.getElementById('citaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+
+      fetch('https://script.google.com/macros/s/AKfycbyzNJB0ICnWBGyi3AGXZ8QRho7op7bn5moMNVizWn18sN8nGMMGgU-DDMY1zr01Ebr7oA/exec', {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(response => {
+        const msg = document.getElementById('mensajeExito');
+        msg.style.display = 'block';
+        window.scrollTo({ top: msg.offsetTop - 50, behavior: 'smooth' });
+        setTimeout(() => {
+          msg.style.display = 'none';
+          form.reset();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 5000);
+      })
+      .catch(error => {
+        alert('Error al enviar el formulario. Intenta nuevamente.');
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>
